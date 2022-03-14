@@ -1,14 +1,17 @@
 require('dotenv').config();
 const express = require('express');
-// const routers = require('./routes/router');
+const routers = require('./routes/router');
+const error = require('./middlewares/error');
 
 const app = express();
 app.use(express.json());
 
-app.use('/user');
-app.use('/login');
-app.use('/categories');
-app.use('/post');
+app.use('/user', routers.userRouter);
+app.use('/login', routers.loginRouter);
+app.use('/categories', routers.categoriesRouter);
+app.use('/post', routers.postRouter);
+
+app.use(error);
 
 app.listen(process.env.PORT, () => console.log(`ouvindo porta ${process.env.PORT}!`));
 
