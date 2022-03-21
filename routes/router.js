@@ -1,7 +1,7 @@
 const express = require('express');
 const { allUsers, userById, createUser } = require('../controllers/userController');
-const { allCategories, createCategory } = require('../controllers/categoryController');
-const { allPosts, postById } = require('../controllers/postController');
+// const { allCategories, createCategory } = require('../controllers/categoryController');
+// const { allPosts, postById } = require('../controllers/postController');
 const {
   displayNameValidation,
   emailValidation,
@@ -20,11 +20,11 @@ userRouter.get('/:id', userById); // Requisito 04
 userRouter.post('/', displayNameValidation, emailValidation, passwordValidation, createUser); // Requisito 01
 userRouter.delete('/me'); // Requisito 12
 
-categoriesRouter.get('/', allCategories); // Requisito 06
-categoriesRouter.post('/', createCategory); // Requisito 05
+// categoriesRouter.get('/', allCategories); // Requisito 06
+// categoriesRouter.post('/', createCategory); // Requisito 05
 
-postRouter.get('/', allPosts); // Requisito 08
-postRouter.get('/:id', postById); // Requisito 09
+// postRouter.get('/', allPosts); // Requisito 08
+// postRouter.get('/:id', postById); // Requisito 09
 postRouter.post('/'); // Requisito 07
 postRouter.post('/:id'); // Requisito 10
 postRouter.delete('/:id'); // Requisito 11

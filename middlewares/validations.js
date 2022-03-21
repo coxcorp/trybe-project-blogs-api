@@ -12,8 +12,7 @@ const emailValidation = (req, res, next) => {
   const { email } = req.body;
   if (!email) return res.status(400).json({ message: '"email" is required' });
 
-  const regexEmail = /\S+@\S+\.\S+/;
-  if (!regexEmail.test(email)) {
+  if (!(/\S+@\S+\.\S+/).test(email)) {
     return res.status(400).json({ message: '"email" must be a valid email' });
   }
   next();
