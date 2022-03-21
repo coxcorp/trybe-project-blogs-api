@@ -22,7 +22,7 @@ const userById = async (req, res, next) => {
     next(e);
   }
 };
-
+// Requisito 01
 const createUser = async (req, res, next) => {
   try {
     const { displayName, email, password, image } = req.body;

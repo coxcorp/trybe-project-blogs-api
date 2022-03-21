@@ -1,6 +1,7 @@
 const express = require('express');
 const { allUsers, userById, createUser } = require('../controllers/userController');
 const { login } = require('../controllers/loginController');
+const authorization = require('../middlewares/auth');
 // const { allCategories, createCategory } = require('../controllers/categoryController');
 // const { allPosts, postById } = require('../controllers/postController');
 const {
@@ -16,7 +17,7 @@ const postRouter = express.Router();
 
 loginRouter.post('/', emailValidation, passwordValidation, login); // Requisito 02
 
-userRouter.get('/', allUsers); // Requisiro 03
+userRouter.get('/', authorization, allUsers); // Requisiro 03
 userRouter.get('/:id', userById); // Requisito 04
 userRouter.post('/', displayNameValidation, emailValidation, passwordValidation, createUser); // Requisito 01
 userRouter.delete('/me'); // Requisito 12
