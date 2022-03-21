@@ -2,12 +2,13 @@ const express = require('express');
 const { allUsers, userById, createUser } = require('../controllers/userController');
 const { login } = require('../controllers/loginController');
 const authorization = require('../middlewares/auth');
-// const { allCategories, createCategory } = require('../controllers/categoryController');
+const { createCategory } = require('../controllers/categoryController');
 // const { allPosts, postById } = require('../controllers/postController');
 const {
   displayNameValidation,
   emailValidation,
   passwordValidation,
+  categoriesValidations,
 } = require('../middlewares/validations');
 
 const loginRouter = express.Router();
@@ -23,7 +24,7 @@ userRouter.post('/', displayNameValidation, emailValidation, passwordValidation,
 userRouter.delete('/me'); // Requisito 12
 
 // categoriesRouter.get('/', allCategories); // Requisito 06
-// categoriesRouter.post('/', createCategory); // Requisito 05
+categoriesRouter.post('/', authorization, categoriesValidations, createCategory); // Requisito 05
 
 // postRouter.get('/', allPosts); // Requisito 08
 // postRouter.get('/:id', postById); // Requisito 09

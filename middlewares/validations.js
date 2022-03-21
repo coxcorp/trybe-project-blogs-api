@@ -37,11 +37,12 @@ const passwordValidation = (req, res, next) => {
   next();
 };
 
-const loginValidations = () => {
-  console.log('teste');
-};
-const categoriesValidations = () => {
-  console.log('teste');
+const categoriesValidations = (req, res, next) => {
+  const { name } = req.body;
+
+  if (!name) return res.status(400).json({ message: '"name" is required' });
+
+  next();
 };
 const postValidatins = () => {
   console.log('teste');
@@ -51,7 +52,6 @@ module.exports = {
   displayNameValidation,
   emailValidation,
   passwordValidation,
-  loginValidations,
   categoriesValidations,
   postValidatins,
 };
