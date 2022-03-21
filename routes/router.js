@@ -2,7 +2,7 @@ const express = require('express');
 const { allUsers, userById, createUser } = require('../controllers/userController');
 const { login } = require('../controllers/loginController');
 const authorization = require('../middlewares/auth');
-const { createCategory } = require('../controllers/categoryController');
+const { allCategories, createCategory } = require('../controllers/categoryController');
 // const { allPosts, postById } = require('../controllers/postController');
 const {
   displayNameValidation,
@@ -23,7 +23,7 @@ userRouter.get('/:id', authorization, userById); // Requisito 04
 userRouter.post('/', displayNameValidation, emailValidation, passwordValidation, createUser); // Requisito 01
 userRouter.delete('/me'); // Requisito 12
 
-// categoriesRouter.get('/', allCategories); // Requisito 06
+categoriesRouter.get('/', authorization, allCategories); // Requisito 06
 categoriesRouter.post('/', authorization, categoriesValidations, createCategory); // Requisito 05
 
 // postRouter.get('/', allPosts); // Requisito 08
