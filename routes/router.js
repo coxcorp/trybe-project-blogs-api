@@ -3,7 +3,7 @@ const { allUsers, userById, createUser } = require('../controllers/userControlle
 const { login } = require('../controllers/loginController');
 const authorization = require('../middlewares/auth');
 const { allCategories, createCategory } = require('../controllers/categoryController');
-// const { allPosts, postById } = require('../controllers/postController');
+const { allPosts, postById } = require('../controllers/postController');
 const {
   displayNameValidation,
   emailValidation,
@@ -26,8 +26,8 @@ userRouter.delete('/me'); // Requisito 12
 categoriesRouter.get('/', authorization, allCategories); // Requisito 06
 categoriesRouter.post('/', authorization, categoriesValidations, createCategory); // Requisito 05
 
-// postRouter.get('/', allPosts); // Requisito 08
-// postRouter.get('/:id', postById); // Requisito 09
+postRouter.get('/', authorization, allPosts); // Requisito 08
+postRouter.get('/:id', authorization, postById); // Requisito 09
 postRouter.post('/'); // Requisito 07
 postRouter.post('/:id'); // Requisito 10
 postRouter.delete('/:id'); // Requisito 11
