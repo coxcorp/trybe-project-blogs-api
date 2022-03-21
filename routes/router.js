@@ -18,7 +18,7 @@ const postRouter = express.Router();
 loginRouter.post('/', emailValidation, passwordValidation, login); // Requisito 02
 
 userRouter.get('/', authorization, allUsers); // Requisiro 03
-userRouter.get('/:id', userById); // Requisito 04
+userRouter.get('/:id', authorization, userById); // Requisito 04
 userRouter.post('/', displayNameValidation, emailValidation, passwordValidation, createUser); // Requisito 01
 userRouter.delete('/me'); // Requisito 12
 
