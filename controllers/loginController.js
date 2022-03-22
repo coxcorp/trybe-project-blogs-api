@@ -1,6 +1,6 @@
 const jwtGenerator = require('../helpers/jwtGenerator');
 const { User } = require('../models');
-
+// Requisito 02
 const login = async (req, res) => {
   const { email } = req.body;
 

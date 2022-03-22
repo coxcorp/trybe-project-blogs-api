@@ -1,6 +1,6 @@
 const jwtGenerator = require('../helpers/jwtGenerator');
 const { User } = require('../models');
-
+// Requisito 03
 const allUsers = async (req, res, next) => {
   try {
     const users = await User.findAll();
@@ -9,7 +9,7 @@ const allUsers = async (req, res, next) => {
     next(e);
   }
 };
-
+// Requisito 04
 const userById = async (req, res, next) => {
   try {
     const { id } = req.params;

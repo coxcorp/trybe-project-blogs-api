@@ -1,5 +1,5 @@
 const { BlogPost, User, Category } = require('../models');
-
+// Requisito 08
 const allPosts = async (req, res, next) => {
   try {
     const posts = await BlogPost.findAll({ 
@@ -13,7 +13,7 @@ const allPosts = async (req, res, next) => {
     next(e);
   }
 };
-
+// Requisito 09
 const postById = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -31,20 +31,29 @@ const postById = async (req, res, next) => {
     next(e);
   }
 };
+// Requisito 07
+const createPost = async (req, res, next) => {
+  try {
+    const { title, content, categoryIds } = req.body;
 
-// const createUser = async (req, res, next) => {
-//   try {
-//     const { displayName, email, password, image } = req.body;
-//     const newUser = await User.create({ displayName, email, password, image });
+    const registeredCategories = await Category.findAll();
+    const registeredCategoriesArray = registeredCategories.map(({ id }) => id);
 
-//     return res.status(201).json(newUser);
-//   } catch (e) {
-//     next(e);
-//   }
-// };
+    const allCategoriesIncludes = categoryIds.every((id) => registeredCategoriesArray.includes(id));
+
+    if (!allCategoriesIncludes) return res.status(400).json({ message: '"categoryIds" not found' });
+
+    const { id } = req.tokenData;
+    const newPost = await BlogPost.create({ title, content, userId: id });
+
+    return res.status(201).json(newPost);
+  } catch (e) {
+    next(e);
+  }
+};
 
 module.exports = {
   allPosts,
   postById,
-  // createUser,
+  createPost,
 };

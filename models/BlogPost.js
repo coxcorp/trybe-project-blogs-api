@@ -3,10 +3,11 @@ const BlogPost = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     content: DataTypes.STRING,
     userId: DataTypes.INTEGER,
-    published: DataTypes.DATE,
-    updated: DataTypes.DATE,
+    published: { type: sequelize.fn('now') },
+    updated: { type: sequelize.fn('now') },
   }, {
-    timestamps: false,
+    createdAt: 'published',
+    updatedAt: 'updated',
     tableName: 'BlogPosts',
   });
 

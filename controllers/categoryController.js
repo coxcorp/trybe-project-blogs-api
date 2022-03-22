@@ -1,5 +1,5 @@
 const { Category } = require('../models');
-
+// Requisito 06
 const allCategories = async (req, res, next) => {
   try {
     const categories = await Category.findAll();
@@ -8,7 +8,7 @@ const allCategories = async (req, res, next) => {
     next(e);
   }
 };
-
+// Requisito 05
 const createCategory = async (req, res, next) => {
   try {
     const { name } = req.body;
